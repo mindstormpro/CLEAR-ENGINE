@@ -3,6 +3,7 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
+import("clear")
 ------------- TODOS ----------------
 ---Figure out config
 
@@ -12,19 +13,23 @@ local gfx = playdate.graphics
 local char = {}
 char.chars = {}
 
+char.charList = {}
 
-function char.new(config) -- config is an array that holds anims, abilities, and other stuff that will be loaded dynamically
-    if char.chars[config.name] ~= nil then
+function char.new(name) -- config is an array that holds anims, abilities, and other stuff that will be loaded dynamically
+    print(name)
+    printTable(CLEAR.config)
+    local config = CLEAR.config.chars[name]
+    if CLEAR.char.chars[config.name] ~= nil then
         return nil
     end
-    char.chars[config.name] = config
-    table.insert(CLEAR.tiles.tileArr[config.x][config.y].on, {char, config.name})
-    table.insert(char.charList, config.name)
+    CLEAR.char.chars[config.name] = config
+    table.insert(CLEAR.tiles.tilesArr[config.x][config.y].on, {char, config.name})
+    table.insert(CLEAR.char.charList, config.name)
 end
 
-function char.update(self)
-    for i = 1, #self.charList do
-        self.chars[self.charList[i]]:update(self, CLEAR)
+function char.update()
+    for i = 1, #CLEAR.char.charList do
+        CLEAR.char.chars[CLEAR.char.charList[i]]:update(CLEAR.char, CLEAR)
     end
 end
 

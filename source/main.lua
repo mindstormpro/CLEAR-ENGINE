@@ -4,6 +4,7 @@ import "CoreLibs/sprites"
 import "CoreLibs/timer"
 import("blendate")
 
+
 local pd = playdate
 local gfx = playdate.graphics
 
@@ -34,7 +35,7 @@ CLEAR.tiles.addTile("tiles/Floor1", 4, 4, 0)
 CLEAR.tiles.addTile("tiles/Floor1", 5, 4, 0)
 CLEAR.tiles.addTile("tiles/Floor1", 6, 4, 0)
 
-CLEAR.char.new(CLEAR, import("char/template/template"))
+CLEAR.char.new("template")
 function pd.update()
     gfx.clear()
     CLEAR.char.update()

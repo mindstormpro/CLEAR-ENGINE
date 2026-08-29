@@ -8,6 +8,9 @@ local gfx = playdate.graphics
 
 local clear = {}
 
+clear.config = import("config")
+
 clear.state = "planning" -- Could be "planning" or "action", where action is where stuff happens in real time and planning is where you decide your moves
 
+CLEAR = {}
 CLEAR = clear

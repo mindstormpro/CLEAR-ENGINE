@@ -2,6 +2,7 @@ import "CoreLibs/object"
 import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
+import("blendate")
 
 local pd = playdate
 local gfx = playdate.graphics
@@ -15,7 +16,7 @@ character.y = 6
 --- Anims and stuff ---
 character.blendData = Blendate("char/" .. name .. "/metadata.json")
 character.anims = {}
-character.anims.idle = {character.metadata:loadRotation("char/" .. name .. "/player"), 1} --put the path to the idle 1-frame  also the second value is the length of the anim
+character.anims.idle = {character.blendData:loadRotation("char/" .. name .. "/Player"), 1} --put the path to the idle 1-frame  also the second value is the length of the anim
 --note to whoever is using this you need to maybe write your own anim controller :3
 
 character.currAnim = "idle"

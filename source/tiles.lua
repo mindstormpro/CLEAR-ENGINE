@@ -16,7 +16,7 @@ local centerX, centerY = 5, 5
 
 
 
-function tiles.initTileSystem(CLEmetadata, w, h, cx, cy)  -- this basically just       (half finished thought that I'm to lazy to remove)
+function tiles.initTileSystem(metadata, w, h, cx, cy)  -- this basically just       (half finished thought that I'm to lazy to remove)
     if metadata == nil then
         if CLEAR.tiles.metadata == nil then
             print("no metadata!")
