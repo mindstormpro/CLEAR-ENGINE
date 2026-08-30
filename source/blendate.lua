@@ -1,6 +1,6 @@
 --- all credits to osuika for this script 
 --- don't copy this, go buy blendate yourself!
---- I slightly modified this script to output an imagetable instead of an animation object
+--- I slightly modified this script to output an imagetable instead of an animation object and also just added `local err` to the first function to shut up the `global variable with lowercase` error
 
 import("CoreLibs/graphics")
 import("CoreLibs/animation")
@@ -11,6 +11,7 @@ local gfx <const> = playdate.graphics
 class("Blendate").extends(Object)
 
 function Blendate:init(json_path)
+	local err
 	self.metadata, err = json.decodeFile(json_path)
 	if err then
 		error(err)
