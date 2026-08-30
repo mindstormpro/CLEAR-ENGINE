@@ -11,3 +11,5 @@ Cool/notable features:
  - rendering of stuff in three whole Ds (never before seen)
  - all written in lua and VERY preformant (maybe)
  - An included modified version of Blendate.lua (with permission) integrated directly into the engine for easy importing of renders.
+
+Also I do plan to actually make CLEAR, but I'm just making CLEAR-ENGINE first
