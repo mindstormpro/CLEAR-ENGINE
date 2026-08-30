@@ -1,5 +1,5 @@
---- all credits to osuika for this script 
---- don't copy this, go buy blendate yourself!
+--- all credits to @osuika on discord for this script 
+--- don't copy this for your non-CLEAR ENGINE project, go buy blendate yourself!
 --- I slightly modified this script to output an imagetable instead of an animation object and also just added `local err` to the first function to shut up the `global variable with lowercase` error
 
 import("CoreLibs/graphics")
@@ -147,3 +147,8 @@ function BlendateRotatingAnimation:get(angle)
 
 	return self.angle_anims[angle_idx]
 end
+
+
+
+
+--- oh hello there :b

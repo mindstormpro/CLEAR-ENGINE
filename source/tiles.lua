@@ -64,26 +64,31 @@ function tiles.addTile(path, tx, ty, rot)
         dy = ty - CLEAR.tiles.centerY
     }
     tempTile.w, tempTile.h = tempTile.img[1]:getSize()
-    print(tempTile.w / 2)
+
     table.insert(CLEAR.tiles.tileList, {tx, ty, 0, 0})
     CLEAR.tiles.tilesArr[tx][ty] = tempTile
 end
 
 function tiles.computeTiles()
-    local crankAngle =  pd.getCrankPosition()
-    local radAngle = math.rad(crankAngle * -1)
+    local radAngle = math.rad(CLEAR.rotation * -1)
     local sin = math.sin(radAngle)
     local cos = math.cos(radAngle)
     local tempTile
     for i = 1, #CLEAR.tiles.tileList do
-        --- a bunch of math
+        --- a bunch of math :/
         tempTile = CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]]
-        tempTile.frame = (math.floor((crankAngle + tempTile.rot) / 2) + 1) % 180 + 1
+        tempTile.frame = (math.floor((CLEAR.rotation + tempTile.rot) / 2) + 1) % 180 + 1
         tempTile.x, tempTile.y = ((tempTile.dx * cos - tempTile.dy * sin) * CLEAR.tiles.tilew) + 200 - 32, ((tempTile.dy * cos + tempTile.dx * sin) * CLEAR.tiles.tileh * CLEAR.tiles.ySquish) + 120 - tempTile.h + 32
         tempTile.dist = math.floor((tempTile.dy * cos + tempTile.dx * sin) * 10000)
         tiles.tileList[i][3] = tempTile.dist
     end
     CLEAR.tiles:sortTiles()
+end
+
+function tiles.drawObject(obj, parentTile)
+    if obj[1] == "char" then
+        CLEAR.char.chars[obj[2]]:draw(parentTile)
+    end
 end
 
 function tiles.drawTiles()
@@ -92,6 +97,9 @@ function tiles.drawTiles()
         --- a bunch of drawing :3
         tempTile = CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]]
         tempTile.img[tempTile.frame]:draw(tempTile.x, tempTile.y)
+        if CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1] ~= nil then
+            CLEAR.tiles.drawObject(CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1], CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]])
+        end
     end
 end
 

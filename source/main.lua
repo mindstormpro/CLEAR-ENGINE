@@ -36,9 +36,10 @@ CLEAR.tiles.addTile("tiles/Floor1", 5, 4, 0)
 CLEAR.tiles.addTile("tiles/Floor1", 6, 4, 0)
 
 CLEAR.char.new("template")
+
 function pd.update()
     gfx.clear()
-    CLEAR.char.update()
-    CLEAR.tiles.computeTiles()
-    CLEAR.tiles.drawTiles()
+
+    CLEAR.update() --- all in one update function for the framework, feel free to modify this if you want
+
 end

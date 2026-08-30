@@ -13,18 +13,23 @@ local character = {}
 character.name = name
 character.x = 6
 character.y = 6
---- Anims and stuff ---
+
 character.blendData = Blendate("char/" .. name .. "/metadata.json")
 character.anims = {}
 character.anims.idle = {character.blendData:loadRotation("char/" .. name .. "/Player"), 1} --put the path to the idle 1-frame  also the second value is the length of the anim
---note to whoever is using this you need to maybe write your own anim controller :3
+--note to whoever is using this you need to maybe write your own anim controller :3 (if you are not reading this then I already implemented it)
 
 character.currAnim = "idle"
 
 --- put your update stuff here ig
-function character.update(self, clear) --the clear input array holds all the tile functions and character data along with everything else that's split up into files, I give you this so you can read the tilemap state and such :)
-    
+function character.update(self) --use the global CLEAR which has all of the tile data/functions and loaded character data and such :b
+    print("yo i'm being updated!!!! :3")
+
 end
 
+function character.draw(self, parent)
+    ---you should probably draw here, unless your character is the invisible man, in which case do whatever you want
+    
+end
 
 return character

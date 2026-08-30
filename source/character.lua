@@ -18,20 +18,22 @@ char.selectedChar = nil
 char.charList = {}
 
 function char.new(name) -- config is an array that holds anims, abilities, and other stuff that will be loaded dynamically
-    print(name)
-    printTable(CLEAR.config)
+    
     local config = CLEAR.config.chars[name]
     if CLEAR.char.chars[config.name] ~= nil then
         print("oops this char already exists!")
-        return nil
+        return 1
     end
     if CLEAR.tiles.tilesArr[config.x][config.y] == nil then
         print("hey waitaminute! you can't put " .. config.name .. "on " .. config.x ..", " .. config.y .. " because that tile doesn't actually exist!")
+        return 1
     end
     CLEAR.char.chars[config.name] = config
     
     table.insert(CLEAR.tiles.tilesArr[config.x][config.y].on, {"char", config.name})
     table.insert(CLEAR.char.charList, config.name)
+    print(name .. " was successfully loaded as a character! :3")
+    return 0
 end
 
 function char.update()
@@ -40,7 +42,7 @@ function char.update()
     end
 
     for i = 1, #CLEAR.char.charList do
-        CLEAR.char.chars[CLEAR.char.charList[i]]:update(CLEAR.char, CLEAR)
+        CLEAR.char.chars[CLEAR.char.charList[i]]:update(CLEAR.char.chars[CLEAR.char.charList[i]])
     end
 end
 
