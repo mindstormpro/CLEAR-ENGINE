@@ -13,7 +13,7 @@ Cool/notable features:
  - An included modified version of Blendate.lua (with permission) integrated directly into the engine for easy importing of tiles/objects/characters.
 
 ## Backstory
-clear was gonna be a tactical turn-based strategy game where you clear rooms of a level one-by-one by controlling the actions each squadmate makes.  
+CLEAR was gonna be a tactical turn-based strategy game where you clear (heh-heh) rooms of a level one-by-one by controlling the actions each character makes.  
 
 sadly, reality set in and I realized two things:
  - This is not something I can feasably do in a month for the stardance chalenge
