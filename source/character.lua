@@ -30,14 +30,14 @@ function char.new(name) -- config is an array that holds anims, abilities, and o
     end
     CLEAR.char.chars[config.name] = config
     
-    table.insert(CLEAR.tiles.tilesArr[config.x][config.y].on, {"char", config.name})
+    table.insert(CLEAR.tiles.tilesArr[config.x + CLEAR.tiles.centerX][config.y + CLEAR.tiles.centerY].on, {"char", config.name})
     table.insert(CLEAR.char.charList, config.name)
     print(name .. " was successfully loaded as a character! :3")
     return 0
 end
 
 function char.update()
-    if #CLEAR.char.charList == 0 or #CLEAR.char.charList then --- #NeverNester
+    if #CLEAR.char.charList == 0 then
         return
     end
 

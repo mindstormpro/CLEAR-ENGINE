@@ -12,30 +12,33 @@ import("clear")
 import("tiles")
 import("character")
 --- TODOs:
---- add dynamic loading                      TODO, URGENT
---- make modding framework                   TODO, URGENT       I need to do this soon since if I do it later it will be hard to implement around everything else (use the loadPDZ function)
---- Rewrite the blendate.lua script          TODO, KINDA URGENT
---- Make characters in Blender               TODO, URGENT
+--- add dynamic loading                      TODO, URGENT, TOO LAZY
+--- make modding framework                   TODO, URGENT, AGAIN, I'M TOO LAZY       I need to do this soon since if I do it later it will be hard to implement around everything else (use the loadPDZ function)
+--- Rewrite the blendate.lua script          basically not needed anymore, so done :)
+
 
 local tileMetadata = Blendate("tiles/TileMetadata.json")
 
 ----------------TILES-----------------------
 
-CLEAR.tiles.initTileSystem(tileMetadata, 10, 10, 5, 5)
-CLEAR.tiles.addTile("tiles/Corner1", 5, 5, 0)
-CLEAR.tiles.addTile("tiles/Wall1", 5, 6, 1)
-CLEAR.tiles.addTile("tiles/Wall1", 6, 5, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 6, 6, 0)
-CLEAR.tiles.addTile("tiles/DeadEnd1", 4, 6, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 3, 6, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 3, 5, 0)
-CLEAR.tiles.addTile("tiles/Wall1", 4, 5, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 3, 4, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 4, 4, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 5, 4, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 6, 4, 0)
+CLEAR.tiles.initTileSystem(tileMetadata, 6, 6)
+CLEAR.tiles.addTile("tiles/Corner1", 0, 0, 0)
+CLEAR.tiles.addTile("tiles/Wall1", 0, 1, 1)
+CLEAR.tiles.addTile("tiles/Wall1", 1,0, 0)
+CLEAR.tiles.addTile("tiles/Floor1", 1, 1, 0)
+CLEAR.tiles.addTile("tiles/DeadEnd1", -1, 1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -2, 1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -2, 0, 0)
+CLEAR.tiles.addTile("tiles/Wall1", -1, 0, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -2, -1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -1, -1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", 0, -1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", 1, -1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -3, -1, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -3, -2, 0)
+CLEAR.tiles.addTile("tiles/Floor1", -3, 0, 0)
 
-CLEAR.char.new("template")
+--CLEAR.char.new("template")
 
 function pd.update()
     gfx.clear()
