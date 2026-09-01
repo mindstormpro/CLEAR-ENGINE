@@ -8,7 +8,7 @@ local pd = playdate
 local gfx = playdate.graphics
 
 CLEAR.tiles = {}
-CLEAR.tiles.actions = {}
+--CLEAR.tiles.actions = {}
 
 CLEAR.tiles.tilew, CLEAR.tiles.tileh, CLEAR.tiles.ySquish = 43, 43, 0.7
 
@@ -45,11 +45,12 @@ end
 
 function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
     if not (CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY].img == nil) then
-        if doReplace then
+        if doReplace and #CLEAR.tiles.tileList > 0 then
             for x = 1, #CLEAR.tiles.tileList do
-                if (CLEAR.tiles.tileList[i][1] == (tx + CLEAR.tiles.centerX)) and (CLEAR.tiles.tileList[i][2] == (ty + CLEAR.tiles.centerY)) then
+                if (CLEAR.tiles.tileList[x][1] == (tx + CLEAR.tiles.centerX)) and (CLEAR.tiles.tileList[x][2] == (ty + CLEAR.tiles.centerY)) then
                     table.remove(CLEAR.tiles.tileList, x)
                     CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY] = {} -- only clearing the tile array if it can be found, a very small optimization.
+                    break
                 end
             end
         else
@@ -72,8 +73,8 @@ function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
     }
     tempTile.w, tempTile.h = tempTile.img[1]:getSize()
 
-    table.insert(CLEAR.tiles.tileList, {tx + CLEAR.tiles.centerX, ty + CLEAR.tiles.centerX, 0, 0})
-    CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerX] = tempTile
+    table.insert(CLEAR.tiles.tileList, {tx + CLEAR.tiles.centerX, ty + CLEAR.tiles.centerY, 0, 0})
+    CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY] = tempTile
 end
 
 function CLEAR.tiles.computeTiles()

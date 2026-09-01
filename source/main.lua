@@ -7,42 +7,50 @@ import("blendate")
 
 local pd = playdate
 local gfx = playdate.graphics
-
+local tmr = pd.timer
 import("clear")  
 import("tiles")
-import("character")
+
 --- TODOs:
 --- add dynamic loading                      TODO, URGENT, TOO LAZY
 --- make modding framework                   TODO, URGENT, AGAIN, I'M TOO LAZY       I need to do this soon since if I do it later it will be hard to implement around everything else (use the loadPDZ function)
 --- Rewrite the blendate.lua script          basically not needed anymore, so done :)
 
+math.randomseed(playdate.getSecondsSinceEpoch())
 
 local tileMetadata = Blendate("tiles/TileMetadata.json")
 
+
 ----------------TILES-----------------------
 
-CLEAR.tiles.initTileSystem(tileMetadata, 6, 6)
-CLEAR.tiles.addTile("tiles/Corner1", 0, 0, 0)
-CLEAR.tiles.addTile("tiles/Wall1", 0, 1, 1)
-CLEAR.tiles.addTile("tiles/Wall1", 1,0, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 1, 1, 0)
-CLEAR.tiles.addTile("tiles/DeadEnd1", -1, 1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -2, 1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -2, 0, 0)
-CLEAR.tiles.addTile("tiles/Wall1", -1, 0, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -2, -1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -1, -1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 0, -1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", 1, -1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -3, -1, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -3, -2, 0)
-CLEAR.tiles.addTile("tiles/Floor1", -3, 0, 0)
+CLEAR.tiles.initTileSystem(tileMetadata, 5, 5)
 
---CLEAR.char.new("template")
+
+--CLEAR.char.new("template") this is how you would create a new character but its not done sooo...
+
+local function fillTiles()
+    local tiles = {
+        "tiles/DeadEnd1",
+        "tiles/Corner1",
+        "tiles/Floor1",
+        "tiles/Floor1",
+        "tiles/Floor1",
+        "tiles/Wall1",
+        "tiles/Wall1"
+    }
+    for x = -2, 2 do
+        for y = -2, 2 do
+            local tile = tiles[math.random(1, 7)]
+            CLEAR.tiles.addTile(tile, x, y, math.random(0, 3), false)
+        end
+    end
+end
+
+fillTiles()
 
 function pd.update()
     gfx.clear()
-
+    pd.timer.updateTimers()
     CLEAR.update() --- all in one update function for the framework, feel free to modify this if you want
 
 end

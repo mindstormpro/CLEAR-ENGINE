@@ -1,6 +1,6 @@
-name=CLEAR
+name=CLEAR-ENGINE Demo
 author=Elio A
 description=A better game 
-bundleID=com.mindstormpro.CLEAR
+bundleID=com.mindstormpro.CLEAR-ENGINE-Renderer-Demo
 version=1.0.0
 buildNumber=1
