@@ -23,7 +23,7 @@ local tileMetadata = Blendate("tiles/TileMetadata.json")
 
 ----------------TILES-----------------------
 
-CLEAR.tiles.initTileSystem(tileMetadata, 5, 5)
+CLEAR.tiles.initTileSystem(tileMetadata, 7, 5)
 
 
 --CLEAR.char.new("template") this is how you would create a new character but its not done sooo...
@@ -38,10 +38,12 @@ local function fillTiles()
         "tiles/Wall1",
         "tiles/Wall1"
     }
-    for x = -2, 2 do
+    for x = -3, 3 do
         for y = -2, 2 do
-            local tile = tiles[math.random(1, 7)]
-            CLEAR.tiles.addTile(tile, x, y, math.random(0, 3), false)
+            if math.random(1, 5) > 1 then
+                local tile = tiles[math.random(1, 7)]
+                CLEAR.tiles.addTile(tile, x, y, math.random(0, 3), false)
+            end
         end
     end
 end

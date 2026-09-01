@@ -10,7 +10,7 @@ local gfx = playdate.graphics
 CLEAR.tiles = {}
 --CLEAR.tiles.actions = {}
 
-CLEAR.tiles.tilew, CLEAR.tiles.tileh, CLEAR.tiles.ySquish = 43, 43, 0.7
+CLEAR.tiles.tilew, CLEAR.tiles.tileh, CLEAR.tiles.ySquish = 43, 43, 0.7 -- the default values
 
 
 function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just       (half finished thought that I'm to lazy to remove)
