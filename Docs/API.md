@@ -31,3 +31,10 @@ Stores the center tile's x and y values on the tilemap, set by `CLEAR.tiles.init
 
 ### `function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace`
 Adds a tile, where `tx` and `ty` are the `x` and `y` coordinates of the tiles in the world in units, `rot` is the 90 degree offset where `1 rot = 90*` so you can set `rot` to 2 which will have the tile rotated by 180 degrees, and `doReplace` is a boolean that is by default false, and when it is true and there is a tile present where you are trying to place another tile it will overwrite the tile, otherwise it will throw an error in the logs and return without placing a tile.
+
+### `function CLEAR.tiles.hideTile(x, y, value)`
+sets the tile at `x`, `y`'s hidden value to the boolean `value`. For example if `value` is `true` then the tile would not be drawn for all future drawing calls untill set to `false`.
+
+### `function CLEAR.tiles.isHidden(x, y)`
+returns a boolean, `true` if the tile at `x`, `y` is hidden, otherwise `false`.
+

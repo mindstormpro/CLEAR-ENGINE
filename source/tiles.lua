@@ -12,6 +12,7 @@ CLEAR.tiles = {}
 
 CLEAR.tiles.tilew, CLEAR.tiles.tileh, CLEAR.tiles.ySquish = 43, 43, 0.7 -- the default values
 
+CLEAR.tiles.isInit = false
 
 function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just       (half finished thought that I'm to lazy to remove)
     if metadata == nil then
@@ -30,11 +31,13 @@ function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just     
         end
     end
     CLEAR.tiles.tileMapW, CLEAR.tiles.tileMapH = w, h
+    CLEAR.tiles.isInit = true
 end
+
+
 
 function CLEAR.tiles.sortTiles()
     table.sort(CLEAR.tiles.tileList, function (tile1, tile2)
-        
         if tile1[3] < tile2[3] then 
             return true 
         else 
@@ -65,6 +68,7 @@ function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
         y, ------ ^^^
         frame, -- ^^^
         dist,
+        hidden = false,
         on = {},
         ty = ty,
         rot = rot * 90,
@@ -96,6 +100,8 @@ end
 function CLEAR.tiles.drawObject(obj, parentTile)
     if obj[1] == "char" then
         CLEAR.char.chars[obj[2]]:draw(parentTile)
+    else 
+        print("unsupported object type: " .. obj[1])
     end
 end
 
@@ -104,9 +110,29 @@ function CLEAR.tiles.drawTiles()
     for i = 1, #CLEAR.tiles.tileList do
         --- a bunch of drawing :3
         tempTile = CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]]
-        tempTile.img[tempTile.frame]:draw(tempTile.x, tempTile.y)
-        if CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1] ~= nil then
-            CLEAR.tiles.drawObject(CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1], CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]])
+        if not tempTile.hidden then
+            tempTile.img[tempTile.frame]:draw(tempTile.x, tempTile.y)
+            if CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1] ~= nil then
+                CLEAR.tiles.drawObject(CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]].on[1], CLEAR.tiles.tilesArr[CLEAR.tiles.tileList[i][1]][CLEAR.tiles.tileList[i][2]])
+            end
         end
+    end
+end
+
+--- tile attribute functions
+
+function CLEAR.tiles.hideTile(x, y, value) 
+    if CLEAR.tiles.isInit then
+        CLEAR.tiles.tileArr[x][y].hidden = value
+    else
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+    end
+end
+
+function CLEAR.tiles.isHidden(x, y) 
+    if CLEAR.tiles.isInit then
+        return CLEAR.tiles.tileArr[x][y].hidden
+    else
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
     end
 end
