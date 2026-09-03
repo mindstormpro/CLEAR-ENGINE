@@ -19,18 +19,21 @@ Stores the sine and cosine values calculated for that frame by the `CLEAR.tiles.
 ## `tiles.lua` functions and values
 
 ### `function CLEAR.tiles.initTileSystem(metadata, w, h)` 
-Initializes the tile system and sets up the tile array (`CLEAR.tiles.tileArr`), it will also overwrite any tilesystem that is already set up.  
+Initializes the tile system and sets up the tile array (`CLEAR.tiles.tileArr`), it will also overwrite any tile system that is already set up.  
 `metadata` is the returned object from doing `Blendate("path/to/your/tile/metadata.json")`, the path used in the demo is `tiles/TileMetadata.json`. It holds all of the metadata for the rendered 3D models of each tile in your game.  
 `w` is the width of the world, and accordingly `h` is the height of the world in units (1 unit is one tile).
 
+### `function CLEAR.tiles.clearTileSystem()`
+Clears the whole saved tile system, great for switching levels, ect.
+
 ### `Int CLEAR.tiles.tileMapW & CLEAR.tiles.tileMapH` Read Only
-Stores the width and height of the tilemap in units (1 tile = 1 unit) initialized by `CLEAR.tiles.initTileSystem()`.
+Stores the width and height of the tile system in units (1 tile = 1 unit) initialized by `CLEAR.tiles.initTileSystem()`.
 
 ### `Int CLEAR.tiles.centerX & CLEAR.tiles.centerY` Read Only
-Stores the center tile's x and y values on the tilemap, set by `CLEAR.tiles.initTileSystem()`.
+Stores the center tile's x and y values on the tile system, set by `CLEAR.tiles.initTileSystem()`.
 
 ### `function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)`
-Adds a tile, where `tx` and `ty` are the `x` and `y` coordinates of the tiles in the world in units, `rot` is the 90 degree offset where `1 rot = 90*` so you can set `rot` to 2 which will have the tile rotated by 180 degrees, and `doReplace` is a boolean that is by default false, and when it is true and there is a tile present where you are trying to place another tile it will overwrite the tile, otherwise it will throw an error in the logs and return without placing a tile.
+Adds a tile, where `tx` and `ty` are the `x` and `y` coordinates of the tiles on the tile system in units, `rot` is the 90 degree offset where `1 rot = 90*` so you can set `rot` to 2 which will have the tile rotated by 180 degrees, and `doReplace` is a boolean that is by default false, and when it is true and there is a tile present where you are trying to place another tile it will overwrite the tile, otherwise it will throw an error in the logs and return without placing a tile.
 
 ### `function CLEAR.tiles.removeTile(tx, ty)`
 removes the tile at `tx`, `ty` from the tile array and list. If the tile doesn't exist, prints an error in the logs.
