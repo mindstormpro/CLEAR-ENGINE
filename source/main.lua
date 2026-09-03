@@ -18,12 +18,12 @@ import("tiles")
 
 math.randomseed(playdate.getSecondsSinceEpoch())
 
-local tileMetadata = Blendate("tiles/TileMetadata.json")
+
 
 
 ----------------TILES-----------------------
 
-CLEAR.tiles.initTileSystem(tileMetadata, 7, 5)
+CLEAR.tiles.initTileSystem("tiles/TileMetadata.json", 7, 5)
 
 
 --CLEAR.char.new("template") this is how you would create a new character but its not done sooo...

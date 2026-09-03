@@ -24,8 +24,3 @@ function CLEAR.update() ---Feel free to patch this function to update in your ow
 end
 
 CLEAR.config = import("config")
-
-
-function pd.update()
-    print("bruh you forgot to compile from main.lua again :(")
-end

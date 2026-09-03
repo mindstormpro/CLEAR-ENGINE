@@ -20,7 +20,7 @@ function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just     
             print("no metadata!")
         end
     else
-        CLEAR.tiles.metadata = metadata
+        CLEAR.tiles.metadata = Blendate(metadata)
     end
     CLEAR.tiles.tilesArr, CLEAR.tiles.tileList = {}, {}
     CLEAR.tiles.centerX, CLEAR.tiles.centerY = math.ceil(w / 2), math.ceil(h / 2)
@@ -34,9 +34,23 @@ function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just     
     CLEAR.tiles.isInit = true
 end
 
-
+function CLEAR.tiles.clearTileSystem()
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
+    CLEAR.tiles.metadata = nil
+    CLEAR.tiles.tilesArr, CLEAR.tiles.tileList = {}, {}
+    CLEAR.tiles.centerX, CLEAR.tiles.centerY = nil, nil
+    CLEAR.tiles.tileMapW, CLEAR.tiles.tileMapH = nil, nil
+    CLEAR.tiles.isInit = false
+end
 
 function CLEAR.tiles.sortTiles()
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
     table.sort(CLEAR.tiles.tileList, function (tile1, tile2)
         if tile1[3] < tile2[3] then 
             return true 
@@ -47,6 +61,10 @@ function CLEAR.tiles.sortTiles()
 end
 
 function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
     if not (CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY].img == nil) then
         if doReplace and #CLEAR.tiles.tileList > 0 then
             for x = 1, #CLEAR.tiles.tileList do
@@ -81,7 +99,27 @@ function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
     CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY] = tempTile
 end
 
+function CLEAR.tiles.removeTile(tx, ty)
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
+
+    for x = 1, #CLEAR.tiles.tileList do
+        if (CLEAR.tiles.tileList[x][1] == (tx + CLEAR.tiles.centerX)) and (CLEAR.tiles.tileList[x][2] == (ty + CLEAR.tiles.centerY)) then
+            table.remove(CLEAR.tiles.tileList, x)
+            CLEAR.tiles.tilesArr[tx + CLEAR.tiles.centerX][ty + CLEAR.tiles.centerY] = {}
+            return
+        end
+    end
+    print("tile at x: " .. tx .. ", y: " .. ty .. " could not be removed because it could not be found")
+end
+
 function CLEAR.tiles.computeTiles()
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
     local radAngle = math.rad(CLEAR.rotation * -1)
     CLEAR.sin = math.sin(radAngle)
     CLEAR.cos = math.cos(radAngle)
@@ -98,6 +136,10 @@ function CLEAR.tiles.computeTiles()
 end
 
 function CLEAR.tiles.drawObject(obj, parentTile)
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
     if obj[1] == "char" then
         CLEAR.char.chars[obj[2]]:draw(parentTile)
     else 
@@ -106,6 +148,10 @@ function CLEAR.tiles.drawObject(obj, parentTile)
 end
 
 function CLEAR.tiles.drawTiles()
+    if not CLEAR.tiles.isInit then
+        print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
+    end
     local tempTile
     for i = 1, #CLEAR.tiles.tileList do
         --- a bunch of drawing :3
@@ -121,18 +167,19 @@ end
 
 --- tile attribute functions
 
-function CLEAR.tiles.hideTile(x, y, value) 
-    if CLEAR.tiles.isInit then
-        CLEAR.tiles.tileArr[x][y].hidden = value
-    else
+function CLEAR.tiles.hideTile(tx, ty, value) 
+    if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
     end
+    CLEAR.tiles.tileArr[tx][ty].hidden = value
 end
 
-function CLEAR.tiles.isHidden(x, y) 
-    if CLEAR.tiles.isInit then
-        return CLEAR.tiles.tileArr[x][y].hidden
-    else
+function CLEAR.tiles.isHidden(tx, ty) 
+    if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
+        return
     end
+    return CLEAR.tiles.tileArr[tx][ty].hidden
 end
+
