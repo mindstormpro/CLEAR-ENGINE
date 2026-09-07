@@ -3,12 +3,12 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
-local config = {}
+-- config for characters and also corrisponding actions???
 
+local config = {}
 
 config.chars = {}
 
 config.chars.template = import("char/template/template")
-
 
 return config

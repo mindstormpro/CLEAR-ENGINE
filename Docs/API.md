@@ -33,7 +33,7 @@ Stores the width and height of the tile system in units (1 tile = 1 unit) initia
 Stores the center tile's x and y values on the tile system, set by `CLEAR.tiles.initTileSystem()`.
 
 ### `function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)`
-Adds a tile, where `tx` and `ty` are the `x` and `y` coordinates of the tiles on the tile system in units, `rot` is the 90 degree offset where `1 rot = 90*` so you can set `rot` to 2 which will have the tile rotated by 180 degrees, and `doReplace` is a boolean that is by default false, and when it is true and there is a tile present where you are trying to place another tile it will overwrite the tile, otherwise it will throw an error in the logs and return without placing a tile.
+Adds a tile, where `tx` and `ty` are the `x` and `y` coordinates of the tiles on the tile system in units, `rot` is the rotational offset in degrees, and `doReplace` is a boolean that is by default false, and when it is true and there is a tile present where you are trying to place another tile it will overwrite the tile, otherwise it will throw an error in the logs and return without placing a tile.
 
 ### `function CLEAR.tiles.removeTile(tx, ty)`
 removes the tile at `tx`, `ty` from the tile array and list. If the tile doesn't exist, prints an error in the logs.

@@ -17,7 +17,7 @@ CLEAR.tiles.isInit = false
 function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just       (half finished thought that I'm to lazy to remove)
     if metadata == nil then
         if CLEAR.tiles.metadata == nil then
-            print("no metadata!")
+            print("no metadata! make sure to add a path into the metadata argument :)")
         end
     else
         CLEAR.tiles.metadata = Blendate(metadata)
@@ -34,6 +34,7 @@ function CLEAR.tiles.initTileSystem(metadata, w, h)  -- this basically just     
     CLEAR.tiles.isInit = true
 end
 
+-- clears the tile system (duh)
 function CLEAR.tiles.clearTileSystem()
     if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
@@ -46,6 +47,7 @@ function CLEAR.tiles.clearTileSystem()
     CLEAR.tiles.isInit = false
 end
 
+--sorts the tiles, not for you to call unless you're trying to mess with the code
 function CLEAR.tiles.sortTiles()
     if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
@@ -75,7 +77,7 @@ function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
                 end
             end
         else
-            print("A tile already exists at " .. tx .. ", " .. ty .. "!")
+            print("A tile already exists at " .. tx .. ", " .. ty .. "! pass true as the 5th arg to ignore this and overwrite it anyways :)")
             return
         end
     end
@@ -89,7 +91,7 @@ function CLEAR.tiles.addTile(path, tx, ty, rot, doReplace)
         hidden = false,
         on = {},
         ty = ty,
-        rot = rot * 90,
+        rot = rot,
         dx = tx,
         dy = ty
     }
@@ -167,6 +169,7 @@ end
 
 --- tile attribute functions
 
+-- sets the hidden attribute of the selected tile
 function CLEAR.tiles.hideTile(tx, ty, value) 
     if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
@@ -175,6 +178,7 @@ function CLEAR.tiles.hideTile(tx, ty, value)
     CLEAR.tiles.tileArr[tx][ty].hidden = value
 end
 
+-- returns the hidden attribute of the selected tile
 function CLEAR.tiles.isHidden(tx, ty) 
     if not CLEAR.tiles.isInit then
         print("TileSystem not initialized! \nuse CLEAR.tiles.initTileSystem() before this runs to fix this!")
