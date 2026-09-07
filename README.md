@@ -23,6 +23,15 @@ So now I have decided to just focus on the code aspect, and release it as CLEAR-
 
 Also I do plan to actually make CLEAR, but I'm just making CLEAR-ENGINE first because why not
 
+## How To use the demo!
+ * Download the playdate sdk at [https://play.date/dev] and run the simulator that it installs
+ * then download the latest demo.pdx.zip file, unzip it, and then open the demo.pdx folder with the playdate simulator
+ * Profit!
+
+ ## How to use the framework!
+  * Download the latest `BaseEngine.zip` from releases and unzip it, then shove the whole thing into your source folder.
+  * Import it using `import "clear"` and then import each submodule you want to use, for now there is only the `tiles` submodule so you would do `import "tiles"` right after.
+  * Then read the API docs in the docs folder to understand how to use it and look at the main.lua in the repo for an example of usage.
 
 ## AI DISCLOSURE:
 AI did not to any Art, Sound Design, or any of the creative aspects of the framework/default assets. AI was used for understanding the math behind the rendering, but has never written any code for me. All code has been written by hand by me.
