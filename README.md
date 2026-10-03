@@ -1,17 +1,20 @@
 # CLEAR-ENGINE! 
 
 ## What's CLEAR-ENGINE?
-CLEAR-ENGINE is a framework for making playdate games, specifically turn-based 3d strategy games! It uses a very simple API (see [The API!](docs/API.md)) 
+CLEAR-ENGINE is a **Framework/Library** for making playdate games, specifically **turn-based 3d strategy games!** It uses a very simple API (see [The API!](docs/API.md)) 
 <img width="800" height="480" alt="playdate-20260901-091758" src="https://github.com/user-attachments/assets/eb53a8fe-ac89-4a49-a168-db7ded9c36e3" />
 
-I plan to release the engine in three parts, The Renderer, The Character System, and The Action System.  
+I plan to release the engine in three parts, The Renderer (out now!), The Character System, and The Action System.  
 Right now The Render is done, and is the core component that everything will be based on, so I am shipping it now!  
 (also, if you really wanted you could totally use this to make like a top-down RPG or some sort of similar game with the 3D engine, but it is made with turn-based strategy in mind)  
 Cool/notable features:
  - rendering of stuff in three whole Ds (never before seen)
  - all written in lua and VERY preformant (stable 30FPS when running on-device with rotations)
- - An included modified version of Blendate.lua (with permission) integrated directly into the engine for easy importing of tiles/objects/characters.
+ - An included modified version of Blendate.lua (with permission) integrated directly into the engine for easy importing of tiles/objects/characters. (thanks osuika!!💛)
 
+## **SHIPWRIGHTERS PLEASE READ
+CLEAR-ENGINE is a library. There are no package managers made for the playdate, so you have to import the framework manually to try it. I have provided a prebuilt demo, but it can only be ran with the playdate simulator installed (a close-source proprietary piece of software that I cannot bundle into the release) or by uploading it to the console and trying it out that way, but you obviously need to own one. There is no way for me to make the demo an executable, you NEED to download the simulator to test it without a console (don't worry though, it's free!)
+You can download it [HERE](https://play.date/dev)
 ## Backstory
 CLEAR was gonna be a tactical turn-based strategy game where you clear (heh-heh) rooms of a level one-by-one by controlling the actions each character makes.  
 
@@ -24,7 +27,7 @@ So now I have decided to just focus on the code aspect, and release it as CLEAR-
 Also I do plan to actually make CLEAR, but I'm just making CLEAR-ENGINE first because why not
 
 ## How To use the demo!
- * Download the playdate sdk at [https://play.date/dev] and run the simulator that it installs
+ * Download the playdate sdk at [https://play.date/dev] and run the simulator that it installs 
  * then download the latest demo.pdx.zip file, unzip it, and then open the demo.pdx folder with the playdate simulator
  * Profit!
 
