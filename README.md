@@ -12,7 +12,7 @@ Cool/notable features:
  - all written in lua and VERY preformant (stable 30FPS when running on-device with rotations)
  - An included modified version of Blendate.lua (with permission) integrated directly into the engine for easy importing of tiles/objects/characters. (thanks osuika!!💛)
 
-## **SHIPWRIGHTERS PLEASE READ
+## **SHIPWRIGHTERS PLEASE READ**
 CLEAR-ENGINE is a library. There are no package managers made for the playdate, so you have to import the framework manually to try it. I have provided a prebuilt demo, but it can only be ran with the playdate simulator installed (a close-source proprietary piece of software that I cannot bundle into the release) or by uploading it to the console and trying it out that way, but you obviously need to own one. There is no way for me to make the demo an executable, you NEED to download the simulator to test it without a console (don't worry though, it's free!)
 You can download it [HERE](https://play.date/dev)
 ## Backstory
