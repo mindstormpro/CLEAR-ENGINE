@@ -1,7 +1,9 @@
 # CLEAR-ENGINE! 
 
 ## What's CLEAR-ENGINE?
-CLEAR-ENGINE is a **Framework/Library** for making playdate games, specifically **turn-based 3d strategy games!** It uses a very simple API (see [The API!](docs/API.md))   
+CLEAR-ENGINE is a **Framework/Library** for making playdate games, specifically **turn-based 3d strategy games!\*** It uses a very simple API (see [The API!](Docs/API.md)) 
+> *Note, Right now only the base engine and renderer have been released, the interaction and character libraries will come in the future. You can still make 3D turn-based stratagy games though, or really any 3D tile-based game with this library!  
+
 <img width="800" height="480" alt="playdate-20260901-091758" src="https://github.com/user-attachments/assets/eb53a8fe-ac89-4a49-a168-db7ded9c36e3" />
 
 I plan to release the engine in three parts, The Renderer (out now!), The Character System, and The Action System.  
@@ -25,6 +27,22 @@ sadly, reality set in and I realized two things:
 So now I have decided to just focus on the code aspect, and release it as CLEAR-ENGINE, an easy to use framework that allows you to make cool turn-based games with a simple 3D rendering engine!
 
 Also I do plan to actually make CLEAR, but I'm just making CLEAR-ENGINE first because why not
+
+## How I made this really really cool project:
+I made this project through a long, annoying, and yet still really fun journy:
+ - After I got the idea to make a framework for this, I did a bunch of research!
+   - I did some research, and eventually I stumbled apon [This Awesome Devlog](https://dioragame.com/devlog/?log=3) for a game called Diora, and their rendering engine was very similar to what I wanted
+   - I also used AI to help me wrap my head around some of the maths that make the engine only need to calculate sine and cosine once per frame, and also I spent like a solid 2 weeks just brainstorming how I might structure the engine.
+ - Then I started the actual programming of the engine
+   - originally during this part, I just threw all of the code into `main.lua` and after like 5 hours I had a working-ish renderer that made all the tiles show properly on the screen.
+   - I also added distance calculation from the camera in order to sort them in a way that the tiles closest to the camera always render last, so tiles don't overlap in wierd ways.
+   - It was also around this time when I met the developer of Blendate, a tool used to turn 3D blender models into imagetables that you can use for the playdate so you don't have to actually render 3D models and can instead render images, and this genuinely saved this project because without it I would have to actually rasterize the tiles to the screen and apply textures, and that's just not feasable in lua on this console, so big thanks to him for giving me a free copy of his tooling and letting me include his importer, `source/blendate.lua`, in this project :3.
+ - After getting the renderer to... well... render, I embarked on the painful task of somehow structuring my bad code into an engine that is usable. 
+   - I moved all of the general code and the main updater loop for the engine into the `source/clear.lua` file, and made that the center of the engine, because it calls all the updater functions of all the other libraries and makes everything work together.
+   - I also moved the renderer into `source/tiles.lua`, and put everything into more user-friendly functions that could be called instead of having to paste a giant blob of code to make a tile appear. This part wasnt that bad compared to the rest of the project, as the only real timesink was making everything somewhat readable, since all of the main code already exists and it was really just a factor of how hard is it to move code from A to B without breaking it.
+ - After I had a working demo again, but this time with all of the engine code in their own self-contained libraries, I spent time adding some QoL functions that I didn't nesicarily need at the moment but would be useful in the future, like `CLEAR.tiles.hideTile()` in `source/tiles.lua` for hiding a tile, or `CLEAR.tiles.clearTileSystem()`, also in `source/tiles.lua`, for clearing all tiles off the tilesystem.
+ - Then at that point all there was left to do to get to the point where I am now was to do docs!
+   - I wrote some basic API documentation in [Docs/API.md](Docs/API.md) that covers all of the current API, including but not limited to creating tiles, deleting tiles, and setting their attributes such as `isHidden`. This only took me like 2 hours, since I just made a simple function template and copy-pasted it for each function before filling in the details, and this had the bonus affect of making the API standardised, so all API functions have the exact same setup in the docs for easy readablilty.
 
 ## How To use the demo!
  * Download the playdate sdk at [https://play.date/dev](https://play.date/dev) and run the simulator that it installs 
@@ -72,13 +90,13 @@ so far I have tested tileSystem sizes as big as 10 by 10, and I have had no pref
 
 ## Roadmap:
 This project is very large, and I plan to ship it in the following segments:
- - The Base Library: `clear.lua` (DONE)
+ - The Base Library: `source/clear.lua` (DONE)
    - Provides the basic foundation for every piece after it
    - Provides a consistant format for the way the engine data is structured so other pieces can work with eachother easily
- - The Tiles Library: `tiles.lua` (DONE)
+ - The Tiles Library: `source/tiles.lua` (DONE)
    - Gives 3D tile rendering functionality (duh)
    - Has native support for defining custom objects to be rendered in the pipeline, so people can add things like assets that sit on top of tiles, if they want to program that (also used by other pieces like the character renderer)
- - The Character Library: `character.lua` (IN PROGRESS)
+ - The Character Library: `source/character.lua` (IN PROGRESS)
    - Allows people to make characters with animations and properties that get rendered on top of tiles, essentially just sprites, but rendered in 3D, because their behavior is really up to the end user of the framework
    - Uses blendate-rendered models to render characters efficiently, just like the tile system, although you need to define animations in code yourself, otherwise they won't render properly.
  - The Interaction Library: (NOT STARTED)
