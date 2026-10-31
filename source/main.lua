@@ -38,7 +38,7 @@ local function fillTiles()
     for x = -3, 3 do
         for y = -2, 2 do
             if math.random(1, 5) > 1 then
-                local tile = tiles[math.random(1, 7)]
+                local tile = tiles[math.random(1, 6)]
                 CLEAR.tiles.addTile(tile, x, y, math.random(0, 3) * 90, false)
             end
         end
@@ -51,6 +51,6 @@ function pd.update()
     CLEAR.rotation = pd.getCrankPosition() -- update the rotation value with the crank for maximum rotate
     gfx.clear()
     pd.timer.updateTimers()
-    CLEAR.update() --- all in one update function for the framework, feel free to modify this if you want
+    CLEAR.update() --- all in one update function for the framework, it calculates the tile states and positions, and then draws everything in order
 
 end

@@ -43,6 +43,7 @@ I made this project through a long, annoying, and yet still really fun journy:
  - After I had a working demo again, but this time with all of the engine code in their own self-contained libraries, I spent time adding some QoL functions that I didn't nesicarily need at the moment but would be useful in the future, like `CLEAR.tiles.hideTile()` in `source/tiles.lua` for hiding a tile, or `CLEAR.tiles.clearTileSystem()`, also in `source/tiles.lua`, for clearing all tiles off the tilesystem.
  - Then at that point all there was left to do to get to the point where I am now was to do docs!
    - I wrote some basic API documentation in [Docs/API.md](Docs/API.md) that covers all of the current API, including but not limited to creating tiles, deleting tiles, and setting their attributes such as `isHidden`. This only took me like 2 hours, since I just made a simple function template and copy-pasted it for each function before filling in the details, and this had the bonus affect of making the API standardised, so all API functions have the exact same setup in the docs for easy readablilty.
+Cool fact: There are no external libraries used in this project besides the blendate importer! Everything else was hand-coded by me, and I'm pretty proud of that :3
 
 ## How To use the demo! (for people who want to see how cool this is without coding a game **(shipwrighters!)**)
  * Download the playdate sdk at [https://play.date/dev](https://play.date/dev) and run the simulator that it installs 
