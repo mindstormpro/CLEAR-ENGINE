@@ -44,12 +44,12 @@ I made this project through a long, annoying, and yet still really fun journy:
  - Then at that point all there was left to do to get to the point where I am now was to do docs!
    - I wrote some basic API documentation in [Docs/API.md](Docs/API.md) that covers all of the current API, including but not limited to creating tiles, deleting tiles, and setting their attributes such as `isHidden`. This only took me like 2 hours, since I just made a simple function template and copy-pasted it for each function before filling in the details, and this had the bonus affect of making the API standardised, so all API functions have the exact same setup in the docs for easy readablilty.
 
-## How To use the demo!
+## How To use the demo! (for people who want to see how cool this is without coding a game **(shipwrighters!)**)
  * Download the playdate sdk at [https://play.date/dev](https://play.date/dev) and run the simulator that it installs 
  * then download the latest demo.pdx.zip file from the releases, unzip it, and then open the demo.pdx folder with the playdate simulator
  * Profit!
 
- ## How to use the framework!
+ ## How to use the framework! (for people who want to use this to make a game (requires basic playdate game-making knoledge))
   * Download the latest `BaseEngine.zip` from releases and unzip it, then shove the whole thing into your source folder.
   * Import it using `import "clear"` and then import each submodule you want to use, for now there is only the `tiles` submodule so you would do `import "tiles"` right after.
   * Then read the API docs in the docs folder to understand how to use it and look at the main.lua in the repo for an example of usage.
