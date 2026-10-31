@@ -1,0 +1,1 @@
+# **This is a WIP template for characters, please disregard :3**
