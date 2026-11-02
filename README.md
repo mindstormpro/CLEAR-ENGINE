@@ -16,7 +16,8 @@ Cool/notable features:
 
 ## **SHIPWRIGHTERS PLEASE READ**
 CLEAR-ENGINE is a library. There are no package managers made for the playdate, so you have to import the framework manually to try it. I have provided a prebuilt demo, but it can only be ran with the playdate simulator installed (a close-source proprietary piece of software that I cannot bundle into the release) or by uploading it to the console and trying it out that way, but you obviously need to own one. There is no way for me to make the demo an executable, you NEED to download the simulator to test it without a console (don't worry though, it's free!)
-You can download it [HERE](https://play.date/dev)
+You can download it [HERE](https://play.date/dev)  
+There is also no package manager for the playdate ecosystem, so that rule doesn't apply here.
 ## Backstory
 CLEAR was gonna be a tactical turn-based strategy game where you clear (heh-heh) rooms of a level one-by-one by controlling the actions each character makes.  
 
